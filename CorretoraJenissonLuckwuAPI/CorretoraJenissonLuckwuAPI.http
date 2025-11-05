@@ -1,0 +1,6 @@
+@CorretoraJenissonLuckwuAPI_HostAddress = http://localhost:5166
+
+GET {{CorretoraJenissonLuckwuAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
