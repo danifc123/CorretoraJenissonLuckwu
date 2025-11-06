@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CorretoraJenissonLuckwuAPI.Entities
 {
@@ -8,10 +9,6 @@ namespace CorretoraJenissonLuckwuAPI.Entities
         public int Id { get; set; }
         #endregion
 
-        #region
-        public DateTime Created_at { get; set; }
-        public DateTime Updated_at { get; set; }
-        #endregion
 
         #region Properties
         [Required]
@@ -26,6 +23,14 @@ namespace CorretoraJenissonLuckwuAPI.Entities
 
         [Phone]
         public string Telefone { get; set; }
+        #endregion
+
+        #region Generete Data
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public DateTime Created_at { get; set; }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public DateTime Updated_at { get; set; }
         #endregion
     }
 }
