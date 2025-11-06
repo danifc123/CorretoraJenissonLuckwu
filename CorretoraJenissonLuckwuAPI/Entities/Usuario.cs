@@ -26,12 +26,10 @@ namespace CorretoraJenissonLuckwuAPI.Entities
         public string Telefone { get; set; }
         #endregion
 
-        #region Generete Data
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime Created_at { get; set; }
+        #region Generated Data (Backend logic)
+        public DateTime Created_at { get; set; } = DateTime.Now;
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime Updated_at { get; set; }
+        public DateTime Updated_at { get; set; } = DateTime.Now;
         #endregion
     }
 }

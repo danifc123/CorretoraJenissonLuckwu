@@ -44,11 +44,9 @@ public enum TipoImovel
 
         #endregion
 
-        #region Generete Data
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        #region Generated Data (Backend logic)
         public DateTime Created_at { get; set; } = DateTime.Now;
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime Updated_at { get; set; } = DateTime.Now;
         #endregion
     }
