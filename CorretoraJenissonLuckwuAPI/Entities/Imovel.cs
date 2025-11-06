@@ -49,5 +49,9 @@ public enum TipoImovel
 
         public DateTime Updated_at { get; set; } = DateTime.Now;
         #endregion
+
+        #region Navigation Properties
+        public virtual ICollection<ImagemImovel> Imagens { get; set; } = new List<ImagemImovel>();
+        #endregion
     }
 }
