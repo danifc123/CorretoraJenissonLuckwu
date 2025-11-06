@@ -6,6 +6,7 @@ namespace CorretoraJenissonLuckwuAPI.Entities
     public class Usuario
     {
         #region Key
+        [Key]
         public int Id { get; set; }
         #endregion
 

@@ -20,6 +20,7 @@ public enum TipoImovel
     public class Imovel
     {
         #region Key
+        [Key]
         public int Id { get; set; }
         #endregion
 
