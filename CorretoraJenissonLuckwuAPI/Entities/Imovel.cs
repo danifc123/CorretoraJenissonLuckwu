@@ -27,14 +27,19 @@ public enum TipoImovel
         #region
         [Required]
         public string Cidade { get; set; }
+        
         [Required]
         public string Descricao { get; set; }
+
         [Required]
         public string Estado { get; set; }
+
         [Required]
         public string Endereco { get; set; }
+
         [Required]
         public decimal Preco { get; set; }
+
         [Required]
         public StatusImovel Status { get; set; }// Disponível, Vendido, Alugado
 

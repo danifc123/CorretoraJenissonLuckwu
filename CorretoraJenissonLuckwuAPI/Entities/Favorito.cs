@@ -13,6 +13,7 @@ namespace CorretoraJenissonLuckwuAPI.Entities
         #region Properties
         [ForeignKey("Usuario")]
         int Usuario_Id { get; set; }
+
         [ForeignKey("Imovel")]
         public int Imovel_Id { get; set; }
         #endregion
