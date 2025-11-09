@@ -5,17 +5,22 @@ namespace CorretoraJenissonLuckwuAPI.Entities
 {
     public class Favorito
     {
-        #region
+        #region Id
         [Key]
         public int Id { get; set; }
         #endregion
 
         #region Properties
         [ForeignKey("Usuario")]
-        int Usuario_Id { get; set; }
+        public int Usuario_Id { get; set; }
 
         [ForeignKey("Imovel")]
         public int Imovel_Id { get; set; }
+        #endregion
+
+        #region Navigation Properties
+        public virtual Usuario Usuario { get; set; }
+        public virtual Imovel Imovel { get; set; }
         #endregion
     }
 }

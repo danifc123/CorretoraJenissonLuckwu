@@ -1,9 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using CorretoraJenissonLuckwuAPI.Context;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-builderServices.AddDbContext<JenissonLuckwuBDSContext>(options =>
+builder.Services.AddDbContext<CorretoraJenissonLuckwuDb>(options =>
 options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();

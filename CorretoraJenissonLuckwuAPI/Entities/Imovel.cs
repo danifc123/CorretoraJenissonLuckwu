@@ -24,7 +24,7 @@ public enum TipoImovel
         public int Id { get; set; }
         #endregion
 
-        #region
+        #region Attributes
         [Required]
         public string Cidade { get; set; }
         
@@ -57,6 +57,7 @@ public enum TipoImovel
 
         #region Navigation Properties
         public virtual ICollection<ImagemImovel> Imagens { get; set; } = new List<ImagemImovel>();
+        public virtual ICollection<Favorito> Favoritos { get; set; } = new List<Favorito>();
         #endregion
     }
 }

@@ -10,13 +10,6 @@ namespace CorretoraJenissonLuckwuAPI.Context
         {
         }
         #endregion
-        #region Properties
-        public Administrador administradores { get; set; }
-        public Favorito favoritos { get; set; }
-        public ImagemImovel imagemImoveis { get; set; }
-        public Imovel imoveis { get; set; }
-        public Usuario usuarios { get; set; }
-        #endregion
         #region DbSets
         public DbSet<Administrador> Administradores { get; set; }
         public DbSet<Favorito> Favoritos { get; set; }
