@@ -5,7 +5,7 @@ namespace CorretoraJenissonLuckwuAPI.Entities
 {
     public class Usuario
     {
-        #region Key
+        #region Id
         [Key]
         public int Id { get; set; }
         #endregion
@@ -26,12 +26,14 @@ namespace CorretoraJenissonLuckwuAPI.Entities
         public string Telefone { get; set; }
         #endregion
 
-        #region Generete Data
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime Created_at { get; set; }
+        #region Generated Data
+        public DateTime Created_at { get; set; } = DateTime.Now;
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime Updated_at { get; set; }
+        public DateTime Updated_at { get; set; } = DateTime.Now;
+        #endregion
+
+        #region Navigation Properties
+        public virtual ICollection<Favorito> Favoritos { get; set; } = new List<Favorito>();
         #endregion
     }
 }

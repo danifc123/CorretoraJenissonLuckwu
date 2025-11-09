@@ -24,17 +24,22 @@ public enum TipoImovel
         public int Id { get; set; }
         #endregion
 
-        #region
+        #region Attributes
         [Required]
         public string Cidade { get; set; }
+        
         [Required]
         public string Descricao { get; set; }
+
         [Required]
         public string Estado { get; set; }
+
         [Required]
         public string Endereco { get; set; }
+
         [Required]
         public decimal Preco { get; set; }
+
         [Required]
         public StatusImovel Status { get; set; }// Disponível, Vendido, Alugado
 
@@ -44,12 +49,15 @@ public enum TipoImovel
 
         #endregion
 
-        #region Generete Data
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        #region Generated Data (Backend logic)
         public DateTime Created_at { get; set; } = DateTime.Now;
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime Updated_at { get; set; } = DateTime.Now;
+        #endregion
+
+        #region Navigation Properties
+        public virtual ICollection<ImagemImovel> Imagens { get; set; } = new List<ImagemImovel>();
+        public virtual ICollection<Favorito> Favoritos { get; set; } = new List<Favorito>();
         #endregion
     }
 }
