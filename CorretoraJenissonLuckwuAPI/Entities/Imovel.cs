@@ -50,9 +50,9 @@ public enum TipoImovel
         #endregion
 
         #region Generated Data (Backend logic)
-        public DateTime Created_at { get; set; } = DateTime.Now;
+        public DateTime Created_at { get; set; } = DateTime.UtcNow;
 
-        public DateTime Updated_at { get; set; } = DateTime.Now;
+        public DateTime Updated_at { get; set; } = DateTime.UtcNow;
         #endregion
 
         #region Navigation Properties
