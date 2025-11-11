@@ -1,5 +1,6 @@
 ﻿using CorretoraJenissonLuckwuAPI.Context;
 using CorretoraJenissonLuckwuAPI.Entities;
+using CorretoraJenissonLuckwuAPI.Models;
 using CorretoraJenissonLuckwuAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,6 +15,7 @@ namespace CorretoraJenissonLuckwuAPI.Controller
         private readonly AdministradorService _service;
         #endregion
 
+
         #region Constructors
         public AdministradorController(CorretoraJenissonLuckwuDb context)
         {
@@ -23,11 +25,18 @@ namespace CorretoraJenissonLuckwuAPI.Controller
 
         #region Controllers
         [HttpPost]
-        public IActionResult PostAdm(Administrador administrador)
+        public async Task<ActionResult<Administrador>> PostAdm(Administrador administrador)
         {
-            _context.Administradores.Add(administrador);
-            _context.SaveChanges();
-            return Ok(administrador);
+            try
+            {
+                var result = await _service.Add(administrador);
+                if (result == null) return BadRequest("Erro ao adicionar administrador");
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro interno no servidor: {ex.Message}");
+            }
         }
 
         [HttpGet("{id}")]
@@ -46,44 +55,47 @@ namespace CorretoraJenissonLuckwuAPI.Controller
         }
 
         [HttpGet("filter")]
-        public IActionResult ListarAdms(string nome)
+        public async Task<ActionResult<Administrador>> GetByNameAdm(string nome)
         {
-            var AdministradoresBanco = _context.Administradores.Where(x => x.Nome.Contains(nome)).ToList();
-            return Ok(AdministradoresBanco);
+            try
+            {
+                var result = await _service.GetByNome(nome);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro interno no servidor: {ex.Message}");
+            }
         }
 
         [HttpPut("{id}")]
-        public IActionResult AtualizarAdm(int id, Administrador administrador)
+        public async Task<ActionResult<Administrador>> AtualizarAdm(int id, Administrador administrador)
         {
-            var AdministradorBanco = _context.Administradores.Find(id);
+            try
+            {
+                var administradorBanco = await _service.Post(id,administrador);
+                return Ok(administradorBanco);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro interno no servidor: {ex.Message}");
+            }
 
-            if (AdministradorBanco == null)
-                return NotFound("Administrador não existe");
-
-            AdministradorBanco.Nome = administrador.Nome;
-            AdministradorBanco.Email = administrador.Email;
-            AdministradorBanco.Telefone = administrador.Telefone;
-            AdministradorBanco.Senha = administrador.Senha;
-            AdministradorBanco.ID_PFPJ = administrador.ID_PFPJ;
-            AdministradorBanco.Updated_at = DateTime.UtcNow;
-
-            _context.Administradores.Update(AdministradorBanco);
-            _context.SaveChanges();
-
-            return Ok(AdministradorBanco);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeletarAdm(int id)
+        public async Task<ActionResult<Administrador>> DeletarAdm(int id)
         {
-            var AdministradorBanco = _context.Administradores.Find(id);
-            if (AdministradorBanco == null)
-                return NotFound("Administrador não existe");
+            try
+            {
+                var administradorBanco = await _service.Delete(id);
 
-            _context.Administradores.Remove(AdministradorBanco);
-            _context.SaveChanges();
-
-            return Ok("Administrador deletado com sucesso");
+                return Ok("Administrador deletado com sucesso");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro interno no servidor: {ex.Message}");
+            }
         }
         #endregion
     }
